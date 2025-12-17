@@ -24,6 +24,13 @@
     "Enum:BookType.5": "Terror",
     "Enum:BookType.6": "Ciência",
     "Enum:BookType.7": "Ficção Científica",
-    "Enum:BookType.8": "Poesia"
+    "Enum:BookType.8": "Poesia",
+    "Menu:Authors": "Autores",
+    "Authors": "Autores",
+    "AuthorDeletionConfirmationMessage": "Tem certeza que deseja excluir o autor {0}?",
+    "BirthDate": "Data de Nascimento",
+    "ShortBio": "Biografia",
+    "NewAuthor": "Novo Autor",
+    "EditAuthor": "Editar Autor"
   }
 }

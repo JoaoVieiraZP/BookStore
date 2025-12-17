@@ -1,3 +1,4 @@
+using BookStore.Authors;
 using BookStore.Books;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -28,6 +29,7 @@ public class BookStoreDbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
 
     #region Entities from the modules
 
@@ -85,7 +87,14 @@ public class BookStoreDbContext :
         builder.Entity<Book>(b =>
         {
             b.ToTable(BookStoreConsts.DbTablePrefix + "Books", BookStoreConsts.DbSchema);
-            b.ConfigureByConvention(); // configura as propriedades herdadas automaticamente
+            b.ConfigureByConvention(); //* configura as propriedades herdadas automaticamente
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
+        
+        builder.Entity<Author>(b =>
+        {
+            b.ToTable(BookStoreConsts.DbTablePrefix + "Authors", BookStoreConsts.DbSchema);
+            b.ConfigureByConvention(); //* Configura as propriedades base do ABP (Id, CreationTime, etc)
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
         });
     }

@@ -1,0 +1,112 @@
+    @page "/authors"
+@using BookStore.Authors
+@using BookStore.Localization
+@using Microsoft.Extensions.Localization
+@inherits AbpCrudPageBase<IAuthorAppService, AuthorDto, Guid, Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, CreateAuthorDto, UpdateAuthorDto>
+@inject IStringLocalizer<BookStoreResource> L
+
+<Card>
+    <CardHeader>
+        <Row Class="justify-content-between">
+            <Column ColumnSize="ColumnSize.IsAuto">
+                <h2>@L["Authors"]</h2>
+            </Column>
+            <Column ColumnSize="ColumnSize.IsAuto">
+                <Button Color="Color.Primary" Clicked="OpenCreateModalAsync">@L["NewAuthor"]</Button>
+            </Column>
+        </Row>
+    </CardHeader>
+    <CardBody>
+        <DataGrid TItem="AuthorDto" Data="Entities" ReadData="OnDataGridReadAsync" TotalItems="TotalCount" ShowPager="true" PageSize="PageSize">
+            <DataGridColumns>
+                <DataGridEntityActionsColumn TItem="AuthorDto" @ref="EntityActionsColumn">
+                    <DisplayTemplate>
+                        <EntityActions TItem="AuthorDto" EntityActionsColumn="@EntityActionsColumn">
+                            <EntityAction TItem="AuthorDto" Text="@L["Edit"]" Clicked="() => OpenEditModalAsync(context)" />
+                            <EntityAction TItem="AuthorDto" Text="@L["Delete"]" Clicked="() => DeleteEntityAsync(context)" ConfirmationMessage="() => GetDeleteConfirmationMessage(context)" />
+                        </EntityActions>
+                    </DisplayTemplate>
+                </DataGridEntityActionsColumn>
+                <DataGridColumn TItem="AuthorDto" Field="@nameof(AuthorDto.Name)" Caption="@L["Name"]"></DataGridColumn>
+                <DataGridColumn TItem="AuthorDto" Field="@nameof(AuthorDto.BirthDate)" Caption="@L["BirthDate"]">
+                    <DisplayTemplate>
+                        @context.BirthDate.ToString("dd/MM/yyyy") @* Força exibição BR na tabela *@
+                    </DisplayTemplate>
+                </DataGridColumn>
+                <DataGridColumn TItem="AuthorDto" Field="@nameof(AuthorDto.Bio)" Caption="@L["Bio"]"></DataGridColumn>
+            </DataGridColumns>
+        </DataGrid>
+    </CardBody>
+</Card>
+
+@* Aqui você deve adicionar os Modais de Criação e Edição seguindo o mesmo padrão do Books.razor *@
+
+<Modal @ref="CreateModal">
+    <ModalContent Centered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@L["NewAuthor"]</ModalTitle>
+                <CloseButton Clicked="CloseCreateModalAsync" />
+            </ModalHeader>
+            <ModalBody>
+                <Validations Model="@NewEntity" ValidateOnLoad="false">
+                    <Field>
+                        <FieldLabel>@L["Name"]</FieldLabel>
+                        <TextEdit @bind-Text="@NewEntity.Name" />
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["BirthDate"]</FieldLabel>
+                        <DateEdit TValue="DateTime" @bind-Date="@NewEntity.BirthDate"></DateEdit>
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["Bio"]</FieldLabel>
+                        <TextEdit @bind-Text="@NewEntity.Bio" />
+                    </Field>
+                </Validations>
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary" Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                <Button Color="Color.Primary" Type="ButtonType.Button" Clicked="CreateEntityAsync">@L["Save"]</Button>
+            </ModalFooter>
+        </Form>
+    </ModalContent>
+</Modal>
+
+@* Modal de Edição *@
+<Modal @ref="EditModal">
+    <ModalContent Centered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@L["EditBook"]</ModalTitle>
+                <CloseButton Clicked="CloseEditModalAsync" />
+            </ModalHeader>
+            <ModalBody>
+                <Validations Model="@EditingEntity" ValidateOnLoad="false">
+                    <Field>
+                        <FieldLabel>@L["Name"]</FieldLabel>
+                        <TextEdit @bind-Text="@EditingEntity.Name" />
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["BirthDate"]</FieldLabel>
+                        <DateEdit TValue="DateTime" @bind-Date="@EditingEntity.BirthDate"></DateEdit>
+                    </Field>
+                    <Field>
+                        <FieldLabel>@L["Bio"]</FieldLabel>
+                        <TextEdit @bind-Text="@EditingEntity.Bio" />
+                    </Field>
+                </Validations>
+            </ModalBody>
+            <ModalFooter>
+                <Button Color="Color.Secondary" Clicked="CloseEditModalAsync">@L["Cancel"]</Button>
+                <Button Color="Color.Primary" Type="ButtonType.Button" Clicked="UpdateEntityAsync">@L["Save"]</Button>
+            </ModalFooter>
+        </Form>
+    </ModalContent>
+</Modal>
+
+@code {
+    private string GetDeleteConfirmationMessage(AuthorDto author)
+    {
+        return L["AuthorDeletionConfirmationMessage", author.Name];
+    }
+}

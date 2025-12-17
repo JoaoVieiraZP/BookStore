@@ -50,6 +50,15 @@ public class BookStoreMenuContributor : IMenuContributor
                 )
             )
         );
+        
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                "BookStore.Authors",
+                l["Menu:Authors"],
+                url: "/authors",
+                icon: "fas fa-users"
+            )
+        );
 
         // Administração
         var administration = context.Menu.GetAdministration();
@@ -68,5 +77,7 @@ public class BookStoreMenuContributor : IMenuContributor
         administration.SetSubItemOrder(SettingManagementMenus.GroupName, 3);
 
         return Task.CompletedTask;
+        
+        
     }
 }
