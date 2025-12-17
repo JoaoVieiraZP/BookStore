@@ -1,0 +1,29 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "Menu:Home": "首页",
+    "Menu:BookStore": "书店",
+    "Menu:Books": "书籍",
+    "Books": "书籍",
+    "NewBook": "新书",
+    "EditBook": "编辑书籍",
+    "Edit": "编辑",
+    "Delete": "删除",
+    "Name": "名称",
+    "Type": "类型",
+    "Price": "价格",
+    "Author": "作者",
+    "Cancel": "取消",
+    "Save": "保存",
+    "BookDeletionConfirmationMessage": "确定要删除书籍 {0} 吗？",
+    "Enum:BookType.0": "未定义",
+    "Enum:BookType.1": "冒险",
+    "Enum:BookType.2": "传记",
+    "Enum:BookType.3": "反乌托邦",
+    "Enum:BookType.4": "奇幻",
+    "Enum:BookType.5": "恐怖",
+    "Enum:BookType.6": "科学",
+    "Enum:BookType.7": "科幻",
+    "Enum:BookType.8": "诗歌"
+  }
+}

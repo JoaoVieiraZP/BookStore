@@ -1,0 +1,29 @@
+{
+  "culture": "tr",
+  "texts": {
+    "Menu:Home": "Ana Sayfa",
+    "Menu:BookStore": "Kitap Mağazası",
+    "Menu:Books": "Kitaplar",
+    "Books": "Kitaplar",
+    "NewBook": "Yeni Kitap",
+    "EditBook": "Kitabı Düzenle",
+    "Edit": "Düzenle",
+    "Delete": "Sil",
+    "Name": "Adı",
+    "Type": "Türü",
+    "Price": "Fiyat",
+    "Author": "Yazar",
+    "Cancel": "İptal",
+    "Save": "Kaydet",
+    "BookDeletionConfirmationMessage": "{0} kitabını silmek istediğinizden emin misiniz?",
+    "Enum:BookType.0": "Tanımsız",
+    "Enum:BookType.1": "Macera",
+    "Enum:BookType.2": "Biyografi",
+    "Enum:BookType.3": "Distopya",
+    "Enum:BookType.4": "Fantastik",
+    "Enum:BookType.5": "Korku",
+    "Enum:BookType.6": "Bilim",
+    "Enum:BookType.7": "Bilim Kurgu",
+    "Enum:BookType.8": "Şiir"
+  }
+}

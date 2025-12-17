@@ -1,0 +1,29 @@
+{
+  "culture": "ru",
+  "texts": {
+    "Menu:Home": "Главная",
+    "Menu:BookStore": "Книжный магазин",
+    "Menu:Books": "Книги",
+    "Books": "Книги",
+    "NewBook": "Новая Книга",
+    "EditBook": "Редактировать Книгу",
+    "Edit": "Редактировать",
+    "Delete": "Удалить",
+    "Name": "Имя",
+    "Type": "Тип",
+    "Price": "Цена",
+    "Author": "Автор",
+    "Cancel": "Отмена",
+    "Save": "Сохранить",
+    "BookDeletionConfirmationMessage": "Вы уверены, что хотите удалить книгу {0}?",
+    "Enum:BookType.0": "Не определен",
+    "Enum:BookType.1": "Приключение",
+    "Enum:BookType.2": "Биография",
+    "Enum:BookType.3": "Антиутопия",
+    "Enum:BookType.4": "Фантастика",
+    "Enum:BookType.5": "Ужасы",
+    "Enum:BookType.6": "Наука",
+    "Enum:BookType.7": "Научная Фантастика",
+    "Enum:BookType.8": "Поэзия"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "culture": "it",
+  "texts": {
+    "Menu:Home": "Pagina principale",
+    "Menu:BookStore": "Libreria",
+    "Menu:Books": "Libri",
+    "Books": "Libri",
+    "NewBook": "Nuovo Libro",
+    "EditBook": "Modifica Libro",
+    "Edit": "Modifica",
+    "Delete": "Elimina",
+    "Name": "Nome",
+    "Type": "Tipo",
+    "Price": "Prezzo",
+    "Author": "Autore",
+    "Cancel": "Annulla",
+    "Save": "Salva",
+    "BookDeletionConfirmationMessage": "Sei sicuro di voler eliminare il libro {0}?",
+    "Enum:BookType.0": "Non Definito",
+    "Enum:BookType.1": "Avventura",
+    "Enum:BookType.2": "Biografia",
+    "Enum:BookType.3": "Distopico",
+    "Enum:BookType.4": "Fantastico",
+    "Enum:BookType.5": "Orrore",
+    "Enum:BookType.6": "Scienza",
+    "Enum:BookType.7": "Fantascienza",
+    "Enum:BookType.8": "Poesia"
+  }
+}

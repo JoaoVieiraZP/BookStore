@@ -1,0 +1,29 @@
+{
+  "culture": "en",
+  "texts": {
+    "Menu:Home": "Home",
+    "Menu:BookStore": "Book Store",
+    "Menu:Books": "Books",
+    "Books": "Books",
+    "NewBook": "New Book",
+    "EditBook": "Edit Book",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Name": "Name",
+    "Type": "Type",
+    "Price": "Price",
+    "Author": "Author",
+    "Cancel": "Cancel",
+    "Save": "Save",
+    "BookDeletionConfirmationMessage": "Are you sure to delete the book {0}?",
+    "Enum:BookType.0": "Undefined",
+    "Enum:BookType.1": "Adventure",
+    "Enum:BookType.2": "Biography",
+    "Enum:BookType.3": "Dystopian",
+    "Enum:BookType.4": "Fantastic",
+    "Enum:BookType.5": "Horror",
+    "Enum:BookType.6": "Science",
+    "Enum:BookType.7": "Science Fiction",
+    "Enum:BookType.8": "Poetry"
+  }
+}
