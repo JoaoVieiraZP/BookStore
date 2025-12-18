@@ -1,14 +1,16 @@
 using System;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace BookStore.Books;
 
 public interface IBookAppService :
-    ICrudAppService< // Define os métodos CRUD (Get, GetList, Create, Update, Delete) automaticamente
+    ICrudAppService<
         BookDto, 
         Guid, 
-        PagedAndSortedResultRequestDto, 
+        GetBookListDto, 
         CreateUpdateBookDto>
 {
+    Task<ListResultDto<Authors.AuthorLookupDto>> GetAuthorLookupAsync();
 }

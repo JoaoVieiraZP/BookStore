@@ -4,6 +4,7 @@
 @using Microsoft.Extensions.Localization
 @inherits AbpCrudPageBase<IAuthorAppService, AuthorDto, Guid, Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, CreateAuthorDto, UpdateAuthorDto>
 @inject IStringLocalizer<BookStoreResource> L
+@inject IAuthorAppService AuthorAppService
 
 <Card>
     <CardHeader>
@@ -24,6 +25,9 @@
                         <EntityActions TItem="AuthorDto" EntityActionsColumn="@EntityActionsColumn">
                             <EntityAction TItem="AuthorDto" Text="@L["Edit"]" Clicked="() => OpenEditModalAsync(context)" />
                             <EntityAction TItem="AuthorDto" Text="@L["Delete"]" Clicked="() => DeleteEntityAsync(context)" ConfirmationMessage="() => GetDeleteConfirmationMessage(context)" />
+                            <EntityAction TItem="AuthorDto" 
+                                          Text="@L["Details"]" 
+                                          Clicked="() => OpenDetailsModalAsync(context)" />
                         </EntityActions>
                     </DisplayTemplate>
                 </DataGridEntityActionsColumn>
@@ -104,9 +108,58 @@
     </ModalContent>
 </Modal>
 
+<Modal @ref="DetailsModal">
+    <ModalContent Centered="true" Size="ModalSize.Large">
+        <ModalHeader>
+            <ModalTitle>@SelectedAuthor?.Name</ModalTitle>
+            <CloseButton Clicked="CloseDetailsModalAsync" />
+        </ModalHeader>
+        <ModalBody>
+            @if (SelectedAuthor != null)
+            {
+                <p><strong>@L["BirthDate"]:</strong> @SelectedAuthor.BirthDate.ToShortDateString()</p>
+                <p><strong>@L["Bio"]:</strong> @SelectedAuthor.Bio</p>
+                <hr />
+                <h5>@L["Books"]</h5>
+                <Table Narrow="true">
+                    <TableHeader>
+                        <TableRow>
+                            <TableHeaderCell>@L["Name"]</TableHeaderCell>
+                            <TableHeaderCell>@L["Price"]</TableHeaderCell>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        @foreach (var book in SelectedAuthor.Books)
+                        {
+                            <TableRow>
+                                <TableRowCell>@book.Name</TableRowCell>
+                                <TableRowCell>@book.Price.ToString("C")</TableRowCell>
+                            </TableRow>
+                        }
+                    </TableBody>
+                </Table>
+            }
+        </ModalBody>
+    </ModalContent>
+</Modal>
+
 @code {
-    private string GetDeleteConfirmationMessage(AuthorDto author)
+    private Modal DetailsModal = default!;
+    private AuthorWithBooksDto? SelectedAuthor;
+
+    protected override string GetDeleteConfirmationMessage(AuthorDto author)
     {
         return L["AuthorDeletionConfirmationMessage", author.Name];
+    }
+
+    private async Task OpenDetailsModalAsync(AuthorDto authorDto)
+    {
+        SelectedAuthor = await AuthorAppService.GetWithBooksAsync(authorDto.Id);
+        await DetailsModal.Show();
+    }
+
+    private Task CloseDetailsModalAsync()
+    {
+        return DetailsModal.Hide();
     }
 }

@@ -19,7 +19,6 @@ public class CreateUpdateBookDto
     [Required]
     public float Price { get; set; }
     
-    [Required]
-    [StringLength(255)]
-    public string Author { get; set; }
+    [Required] 
+    public Guid AuthorId { get; set; } // Obrigatório para criar/editar
 }

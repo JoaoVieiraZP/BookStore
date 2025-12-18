@@ -4,6 +4,7 @@
     "Menu:Home": "Início",
     "Menu:BookStore": "Livraria",
     "Menu:Books": "Livros",
+    "BookStore:0001": "Já existe um autor cadastrado com o nome {name}.",
     "Books": "Livros",
     "NewBook": "Novo Livro",
     "EditBook": "Editar Livro",
@@ -31,6 +32,12 @@
     "BirthDate": "Data de Nascimento",
     "ShortBio": "Biografia",
     "NewAuthor": "Novo Autor",
-    "EditAuthor": "Editar Autor"
+    "EditAuthor": "Editar Autor",
+    "Details": "Informações",
+    "SelectAuthor": "Selecione o Autor",
+    "Bio": "Biografia",
+    "YearsOld": "anos",
+    "BookInformation": "Informações do Livro",
+    "AboutTheAuthor": "Sobre o Autor"
   }
 }

@@ -2,5 +2,6 @@
 
 public static class BookStoreDomainErrorCodes
 {
-    /* You can add your business exception error codes here, as constants */
+    /* Adicione esta linha aqui: */
+    public const string AuthorAlreadyExists = "BookStore:0001";
 }

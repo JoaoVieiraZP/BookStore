@@ -7,7 +7,8 @@ using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.SettingManagement;
-using Volo.Abp.BlobStoring.Database;
+using Volo.Abp.BlobStoring; // Adicionado
+using Volo.Abp.BlobStoring.Azure; // Adicionado
 using Volo.Abp.Caching;
 using Volo.Abp.OpenIddict;
 using Volo.Abp.PermissionManagement.OpenIddict;
@@ -33,7 +34,7 @@ namespace BookStore;
     typeof(AbpIdentityDomainModule),
     typeof(AbpOpenIddictDomainModule),
     typeof(AbpTenantManagementDomainModule),
-    typeof(BlobStoringDatabaseDomainModule)
+    typeof(AbpBlobStoringAzureModule) // Substituído/Adicionado para suportar Azure
     )]
 public class BookStoreDomainModule : AbpModule
 {
@@ -44,6 +45,32 @@ public class BookStoreDomainModule : AbpModule
             options.IsEnabled = MultiTenancyConsts.IsEnabled;
         });
 
+        // A configuração deve ficar AQUI dentro
+        Configure<AbpBlobStoringOptions>(options =>
+        {
+            options.Containers.ConfigureDefault(container =>
+            {
+                container.UseAzure(azure =>
+                {
+                    azure.ConnectionString = "UseDevelopmentStorage=true";
+                    azure.ContainerName = "authors-images";
+                    azure.CreateContainerIfNotExists = true;
+                });
+            });
+        });
+        
+        Configure<AbpBlobStoringOptions>(options =>
+        {
+            options.Containers.ConfigureDefault(container =>
+            {
+                container.UseAzure(azure =>
+                {
+                    azure.ConnectionString = "UseDevelopmentStorage=true";
+                    azure.ContainerName = "authors-images";
+                    azure.CreateContainerIfNotExists = true;
+                });
+            });
+        });
 
 #if DEBUG
         context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());

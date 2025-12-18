@@ -87,8 +87,13 @@ public class BookStoreDbContext :
         builder.Entity<Book>(b =>
         {
             b.ToTable(BookStoreConsts.DbTablePrefix + "Books", BookStoreConsts.DbSchema);
-            b.ConfigureByConvention(); //* configura as propriedades herdadas automaticamente
+            b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            b.HasOne(x => x.Author)
+                .WithMany()
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
         });
         
         builder.Entity<Author>(b =>
